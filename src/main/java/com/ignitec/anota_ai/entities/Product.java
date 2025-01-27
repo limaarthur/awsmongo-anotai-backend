@@ -1,5 +1,6 @@
 package com.ignitec.anota_ai.entities;
 
+import com.ignitec.anota_ai.dtos.ProductDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,11 +16,18 @@ public class Product {
 
     private String ownerId;
 
-    private String price;
+    private Integer price;
 
     private Category category;
 
     public Product() {
+    }
+
+    public Product(ProductDto productDto) {
+        this.title = productDto.title();
+        this.description = productDto.description();
+        this.ownerId = productDto.ownerId();
+        this.price = productDto.price();
     }
 
     public String getId() {
@@ -62,11 +70,11 @@ public class Product {
         this.category = category;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 }
