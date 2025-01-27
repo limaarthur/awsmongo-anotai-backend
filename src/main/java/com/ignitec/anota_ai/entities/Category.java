@@ -18,7 +18,13 @@ public class Category {
 
     public Category() {
     }
-    
+
+    public Category(CategoryDto categoryDto) {
+        this.title = categoryDto.title();
+        this.description = categoryDto.description();
+        this.ownerId = categoryDto.ownerId();
+    }
+
     public String getId() {
         return id;
     }
