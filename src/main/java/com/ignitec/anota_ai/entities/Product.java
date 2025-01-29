@@ -1,6 +1,7 @@
 package com.ignitec.anota_ai.entities;
 
 import com.ignitec.anota_ai.dtos.ProductDto;
+import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,7 +19,7 @@ public class Product {
 
     private Integer price;
 
-    private Category category;
+    private String category;
 
     public Product() {
     }
@@ -28,6 +29,7 @@ public class Product {
         this.description = productDto.description();
         this.ownerId = productDto.ownerId();
         this.price = productDto.price();
+        this.category = productDto.categoryId();
     }
 
     public String getId() {
@@ -62,11 +64,11 @@ public class Product {
         this.ownerId = ownerId;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -76,5 +78,19 @@ public class Product {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        JSONObject json = new JSONObject();
+        json.put("title", this.title);
+        json.put("description", this.description);
+        json.put("ownerId", this.ownerId);
+        json.put("id", this.id);
+        json.put("categoryId", this.category);
+        json.put("price", this.price);
+        json.put("type", "product");
+
+        return json.toString();
     }
 }

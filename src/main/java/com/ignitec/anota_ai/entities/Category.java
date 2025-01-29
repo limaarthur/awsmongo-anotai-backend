@@ -1,6 +1,7 @@
 package com.ignitec.anota_ai.entities;
 
 import com.ignitec.anota_ai.dtos.CategoryDto;
+import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -55,5 +56,17 @@ public class Category {
 
     public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
+    }
+
+    @Override
+    public String toString() {
+        JSONObject json = new JSONObject();
+        json.put("title", this.title);
+        json.put("description", this.description);
+        json.put("ownerId", this.ownerId);
+        json.put("id", this.id);
+        json.put("type", "category");
+
+        return json.toString();
     }
 }
